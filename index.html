@@ -9,19 +9,48 @@
     </head>
 
     <body>
-        <header>
-            <h1>Rock Paper Scissors</h1>
-        </header>
+        <div class="container">
+            <div class="row">
+                <header>
+                    <h1>Rock Paper Scissors</h1>
+                </header>
+            </div>
+        </div>
 
+        <div id="buttons" class="container">
+            <div class="newGameButton">
+                <button class="newGame">
+                    NEW GAME
+                </button>
+            </div>
+            <div class="row">
+                <button class="button" id="paper">Paper
+                    <span><i class="far fa-hand-paper"></i></span>
+                </button>
+                <button class="button" id="paper">Rock
+                    <span><i class="far fa-hand-rock"></i></span>
+                </button>
+                <button class="button" id="paper">Scissors
+                    <span><i class="far fa-hand-scissors"></i></span>
+                </button>
+            </div>
+        </div>
 
+        <div id="info" class="container">
+            <p id="action-message">Let'go! Make Your move.</p>
+        </div>
 
+        <div id="score-board-table" class="container">
+            <div class="row">
+                <div class="">user</div>
+                <div class="">comp</div>
+                <span id="user-score">0</span> : <span id="computer-score">0</span>
+            </div>
+        </div>
 
-
-
-
-
-
-
+        <div class="result">
+            <p>Paper beats rock. You win!</p>
+        </div>
 
     <script src="js/script.js"></script>   
     </body>

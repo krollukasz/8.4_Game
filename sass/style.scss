@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+
+$background-header: #E5E7E9;
+$font-color-header: #25272E;
+$background-body: #D7DBDD;
+$font-color-body: #2E4053;
+$border-color: #D35400;
+$new-game-button-color: #F4D03F;
+$new-game-button-hover-color: #E67E22;
+$button-color: #52BE80;
+$button-hover-color: #229954;
+$font-color-white: #fff;
+
+* {
+    box-sizing: border-box;   
+}
+
+body {
+    background-color: $background-body;
+    color: $font-color-body;
+    font-family: "Asap", sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 30px;
+    background-color: $background-header;
+
+    h1 {
+        margin: 0;
+        color: $font-color-header;
+        text-align: center;
+        font-weight: 700;
+    }
+}
+
+#info {
+    font-size: 22px;
+    text-align: center;
+
+    p {
+        padding-top: 25px;
+    }
+}
+
+#new-game-button, .btns {
+    display: flex;
+    justify-content: center;
+}
+
+.global {
+    margin: 20px;
+    padding: 15px 50px;
+    font-size: 20px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px grey;
+    font-weight: 700;
+}
+
+.new-game {
+    background-color: $new-game-button-color;
+    border: 3px solid $border-color;
+
+    &:hover {
+        background-color: $new-game-button-hover-color;
+    }
+}
+
+button {
+    background-color: $button-color;
+    border: 3px solid #196F3D;
+
+    &:hover {
+        background-color: $button-hover-color;
+        color: $font-color-white;
+        cursor: pointer;
+    }
+}
+
+.container {
+    
+    .score-board {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .score-board-table {
+        padding: 10px 20px;
+        width: 200px;
+        color: $font-color-body;
+        font-size: 50px;
+        font-weight: 700;
+        text-align: center;
+        border: 3px solid $border-color;
+        border-radius: 4px;
+    }
+
+    #user-label, #computer-label {
+        font-size: 40px;
+        font-weight: 700;
+    }
+}

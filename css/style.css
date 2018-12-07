@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Asap:400,500,700");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #D7DBDD;
+  color: #2E4053;
+  font-family: "Asap", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 30px;
+  background-color: #E5E7E9;
+}
+
+header h1 {
+  margin: 0;
+  color: #25272E;
+  text-align: center;
+  font-weight: 700;
+}
+
+#info {
+  font-size: 22px;
+  text-align: center;
+}
+
+#info p {
+  padding-top: 25px;
+}
+
+#new-game-button, .btns {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.global {
+  margin: 20px;
+  padding: 15px 50px;
+  font-size: 20px;
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px grey;
+  font-weight: 700;
+}
+
+.new-game {
+  background-color: #F4D03F;
+  border: 3px solid #D35400;
+}
+
+.new-game:hover {
+  background-color: #E67E22;
+}
+
+button {
+  background-color: #52BE80;
+  border: 3px solid #196F3D;
+}
+
+button:hover {
+  background-color: #229954;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container .score-board {
+  margin-top: 30px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.container .score-board-table {
+  padding: 10px 20px;
+  width: 200px;
+  color: #2E4053;
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid #D35400;
+  border-radius: 4px;
+}
+
+.container #user-label, .container #computer-label {
+  font-size: 40px;
+  font-weight: 700;
+}
+/*# sourceMappingURL=style.css.map */

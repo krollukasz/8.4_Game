@@ -16,6 +16,7 @@ $font-color-white: #fff;
 }
 
 body {
+    margin: 0;
     background-color: $background-body;
     color: $font-color-body;
     font-family: "Asap", sans-serif;
@@ -26,6 +27,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+// HEARDER
 
 header {
     padding: 30px;
@@ -39,8 +42,22 @@ header {
     }
 }
 
-#info {
+// OUTPUTS
+
+.start {
+    font-size: 26px;
+}
+
+.info-action {
     font-size: 22px;
+}
+
+.number-of-rounds, .result-info {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.start, .info-action {
     text-align: center;
 
     p {
@@ -48,7 +65,9 @@ header {
     }
 }
 
-#new-game-button, .btns {
+// BUTTONS
+
+.new-game-button, .btns {
     display: flex;
     justify-content: center;
 }
@@ -82,7 +101,9 @@ button {
     }
 }
 
-.container {
+// SCORE BOARD
+
+.score {
     
     .score-board {
         margin-top: 30px;
@@ -102,7 +123,7 @@ button {
         border-radius: 4px;
     }
 
-    #user-label, #computer-label {
+    .user-label, .computer-label {
         font-size: 40px;
         font-weight: 700;
     }

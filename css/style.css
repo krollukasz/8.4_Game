@@ -4,6 +4,7 @@
 }
 
 body {
+  margin: 0;
   background-color: #D7DBDD;
   color: #2E4053;
   font-family: "Asap", sans-serif;
@@ -27,16 +28,28 @@ header h1 {
   font-weight: 700;
 }
 
-#info {
+.start {
+  font-size: 26px;
+}
+
+.info-action {
   font-size: 22px;
+}
+
+.number-of-rounds, .result-info {
+  padding-top: 10px;
   text-align: center;
 }
 
-#info p {
+.start, .info-action {
+  text-align: center;
+}
+
+.start p, .info-action p {
   padding-top: 25px;
 }
 
-#new-game-button, .btns {
+.new-game-button, .btns {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -72,7 +85,7 @@ button:hover {
   cursor: pointer;
 }
 
-.container .score-board {
+.score .score-board {
   margin-top: 30px;
   display: -ms-flexbox;
   display: flex;
@@ -82,7 +95,7 @@ button:hover {
       align-items: center;
 }
 
-.container .score-board-table {
+.score .score-board-table {
   padding: 10px 20px;
   width: 200px;
   color: #2E4053;
@@ -93,7 +106,7 @@ button:hover {
   border-radius: 4px;
 }
 
-.container #user-label, .container #computer-label {
+.score .user-label, .score .computer-label {
   font-size: 40px;
   font-weight: 700;
 }

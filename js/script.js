@@ -11,7 +11,7 @@ var result = document.getElementById("output-result");
 // Functions
 
 function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
-    var rounds = parseFloat(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:"));
+    var rounds = (window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:"));
     return rounds;
 };
 
@@ -21,8 +21,10 @@ function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklaro
 
 newGame.addEventListener("click", function() { // wywołanie funkcji
     var rounds = getRounds();
-        if (!rounds || rounds === null || isNaN(rounds)) {
+        if (!rounds || rounds === null) {
             roundsInfo.innerHTML = "Nie podano ilości rund";
+        }   else if (isNaN(rounds)) {
+            roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
         }   else {
             printRounds(rounds);
         }

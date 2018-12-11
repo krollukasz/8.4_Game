@@ -49,6 +49,11 @@ header h1 {
   padding-top: 25px;
 }
 
+.game-result-info {
+  font-size: 30px;
+  text-align: center;
+}
+
 .new-game-button, .btns {
   display: -ms-flexbox;
   display: flex;

@@ -16,16 +16,17 @@ var roundsInfo = document.getElementById("number-of-rounds");
 var result = document.getElementById("output-result");
 var gameResult = document.getElementById("game-result");
 
-// Functions
+// GET ROUND FUNCTION
 
 function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
-    rounds = (window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:"));
-    return rounds;
+    return rounds = (window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:"));
 };
 
 function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + rounds + "</strong>.";
 };
+
+// NEW BUTTON
 
 newGame.addEventListener("click", function() { // wywołanie funkcji
     var rounds = getRounds();
@@ -38,7 +39,7 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
         }
 });
 
-// Powyżej działa i jest ok, poniżej nowe funkcje
+// COMPUTER CHOICE FUNCTION
 
 function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
     var result = Math.floor(Math.random() * 3); // Funkcja losująca liczbę, mnożenie przez 3, zaokrąglenie w dół i zapis do zmiennej
@@ -51,6 +52,7 @@ function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
     }
 };
 
+// PLAYER CHOICE FUNCTION
 
 function playerMove(playerChoice) {
     var computerChoice = getComputerChoice(); // Zapisanie do zmiennej "gotowego" wyboru komputera
@@ -62,25 +64,28 @@ function playerMove(playerChoice) {
             playerScore++;  // Zwiększenie liczby punktów gracza
             userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
             // gameOver(); // Wywołanie funkcji kończącej grę
-            console.log("player score:" + playerScore);
+            // console.log("player score:" + playerScore);
         }   else {
             result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
             computerScore++;    // Zwiększenie liczby punktów komputera
             computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
             // gameOver(); // Wywołanie funkcji kończącej grę
-            console.log("computer score:" + computerScore);
+            // console.log("computer score:" + computerScore);
         }
         gameOver();
 };
 
+// GAME OVER FUNCTION
 
 function gameOver() { // Funkcja kończąca grę
-    if (playerScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
+    if (userScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
         gameResult.innerHTML = "Gracz wygrał tą rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     }   else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
         gameResult.innerHTML = "Komputer wygrał tą rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
     }
 };
+
+// BUTTONS
 
 paperButton.addEventListener("click", function() {
     playerMove("papier");

@@ -64,13 +64,11 @@ function playerMove(playerChoice) {
             playerScore++;  // Zwiększenie liczby punktów gracza
             userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
             // gameOver(); // Wywołanie funkcji kończącej grę
-            // console.log("player score:" + playerScore);
         }   else {
             result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
             computerScore++;    // Zwiększenie liczby punktów komputera
             computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
             // gameOver(); // Wywołanie funkcji kończącej grę
-            // console.log("computer score:" + computerScore);
         }
         gameOver();
 };

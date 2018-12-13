@@ -63,20 +63,18 @@ function playerMove(playerChoice) {
             result.innerHTML = "<strong>Wygrana!</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
             playerScore++;  // Zwiększenie liczby punktów gracza
             userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
-            // gameOver(); // Wywołanie funkcji kończącej grę
         }   else {
             result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
             computerScore++;    // Zwiększenie liczby punktów komputera
             computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
-            // gameOver(); // Wywołanie funkcji kończącej grę
         }
         gameOver();
 };
 
 // GAME OVER FUNCTION
 
-function gameOver(userScore, computerScore) { // Funkcja kończąca grę
-    if (userScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
+function gameOver() { // Funkcja kończąca grę
+    if (playerScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
         gameResult.innerHTML = "Gracz wygrał tą rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     }   else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
         gameResult.innerHTML = "Komputer wygrał tą rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera

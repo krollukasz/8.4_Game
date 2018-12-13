@@ -75,7 +75,7 @@ function playerMove(playerChoice) {
 
 // GAME OVER FUNCTION
 
-function gameOver() { // Funkcja kończąca grę
+function gameOver(userScore, computerScore) { // Funkcja kończąca grę
     if (userScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
         gameResult.innerHTML = "Gracz wygrał tą rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     }   else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund

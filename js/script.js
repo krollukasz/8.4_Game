@@ -11,7 +11,7 @@ var computerPoints = document.getElementById("computer-score");
 var playerScore = 0;
 var computerScore = 0;
 var rounds;
-var gamePossible = false;
+var gamePossible = false; // zmienna do zablokowania gry przed podaniem ilości rund
 
 var roundsInfo = document.getElementById("number-of-rounds");
 var result = document.getElementById("output-result");

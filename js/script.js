@@ -33,7 +33,7 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
     rounds = getRounds();
         if (!rounds || rounds === null) {
             roundsInfo.innerHTML = "Nie podano ilości rund";
-        }   else if (typeof(rounds) === 'string') {
+        }   else if (isNaN(rounds)) {
             roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
         }   else {
             printRounds(rounds);

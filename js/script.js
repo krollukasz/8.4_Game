@@ -11,6 +11,7 @@ var computerPoints = document.getElementById("computer-score");
 var playerScore = 0;
 var computerScore = 0;
 var rounds;
+var gamePossible = false;
 
 var roundsInfo = document.getElementById("number-of-rounds");
 var result = document.getElementById("output-result");
@@ -37,6 +38,7 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
             roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
         }   else {
             printRounds(rounds);
+            gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
         }
 });
 
@@ -79,15 +81,21 @@ function gameOver() { // Funkcja kończąca grę
     // console.log("rounds " + rounds);
     if (playerScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
         gameResult.innerHTML = "Gracz wygrał tą rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
+        gamePossible = false; // zablokowanie dalszej rozgrywki
     }   else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
         gameResult.innerHTML = "Komputer wygrał tą rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
+        gamePossible = false; // zablokowanie dalszej rozgrywki
     }
 };
 
 // BUTTONS
 
 paperButton.addEventListener("click", function() {
-    playerMove("papier");
+    if (gamePossible) {
+        playerMove("papier");
+    } else {
+        roundsInfo.innerHTML = "Naciśnij przycisk nowa gra"
+    }
 });
 
 rockButton.addEventListener("click", function() {

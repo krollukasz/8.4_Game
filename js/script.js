@@ -94,14 +94,22 @@ paperButton.addEventListener("click", function() {
     if (gamePossible) {
         playerMove("papier");
     } else {
-        roundsInfo.innerHTML = "Naciśnij przycisk nowa gra"
+        roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
     }
 });
 
 rockButton.addEventListener("click", function() {
-    playerMove("kamień");
+    if (gamePossible) {
+        playerMove("kamień");
+    } else {
+        roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+    }
 });
 
 scissorsButton.addEventListener("click", function() {
-    playerMove("nożyce");
+    if (gamePossible) {
+        playerMove("nożyce");
+    } else {
+        roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+    }
 });

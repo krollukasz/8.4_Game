@@ -19,7 +19,8 @@ var gameResult = document.getElementById("game-result");
 // GET ROUND FUNCTION
 
 function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
-    return rounds = (window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:"));
+    rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zwraca do mniennej wartość typu liczbowego
+    return rounds;
 };
 
 function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklarowanych rund
@@ -29,10 +30,10 @@ function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklaro
 // NEW BUTTON
 
 newGame.addEventListener("click", function() { // wywołanie funkcji
-    var rounds = getRounds();
+    rounds = getRounds();
         if (!rounds || rounds === null) {
             roundsInfo.innerHTML = "Nie podano ilości rund";
-        }   else if (isNaN(rounds)) {
+        }   else if (typeof(rounds) === 'string') {
             roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
         }   else {
             printRounds(rounds);
@@ -74,6 +75,8 @@ function playerMove(playerChoice) {
 // GAME OVER FUNCTION
 
 function gameOver() { // Funkcja kończąca grę
+    // console.log("playerScore: " + playerScore);
+    // console.log("rounds " + rounds);
     if (playerScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
         gameResult.innerHTML = "Gracz wygrał tą rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     }   else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund

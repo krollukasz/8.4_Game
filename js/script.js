@@ -39,14 +39,14 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
   result.innerHTML = "";  // usunięcie komunikatu
   gameResult.innerHTML = "";  // usunięcie komunikatu
   rounds = getRounds();
-    if (rounds == "" || rounds == null) {
-      roundsInfo.innerHTML = "Nie podano ilości rund";
-    } else if (isNaN(rounds)) {
-      roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
-    } else {
-      printRounds(rounds);
-      gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
-    }
+  if (rounds == "" || rounds == null) {
+    roundsInfo.innerHTML = "Nie podano ilości rund";
+  } else if (isNaN(rounds)) {
+    roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
+  } else {
+    printRounds(rounds);
+    gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
+  }
 });
 
 // COMPUTER CHOICE FUNCTION
@@ -69,14 +69,14 @@ function playerMove(playerChoice) {
   if (playerChoice === computerChoice) { // Porównaie wyników
     result.innerHTML = "<strong>Remis.</strong> Gracz wybrał" + playerChoice + " - Komputer wybrał " + computerChoice;
   } else if ((playerChoice === "papier" && computerChoice === "kamień") || (playerChoice === "kamień" && computerChoice === "nożyce") || (playerChoice === "nożyce" && computerChoice === "papier")) {
-      result.innerHTML = "<strong>Wygrana!</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-      playerScore++;  // Zwiększenie liczby punktów gracza
-      userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
-    } else {
-        result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-        computerScore++;    // Zwiększenie liczby punktów komputera
-        computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
-      }
+    result.innerHTML = "<strong>Wygrana!</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
+    playerScore++;  // Zwiększenie liczby punktów gracza
+    userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
+  } else {
+    result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
+    computerScore++;    // Zwiększenie liczby punktów komputera
+    computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
+  }
   gameOver();
 };
 
@@ -88,10 +88,10 @@ function gameOver() { // Funkcja kończąca grę
     gameResult.innerHTML = "Gracz wygrał tę rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     gamePossible = false; // zablokowanie dalszej rozgrywki
   } else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
-      roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-      gameResult.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
-      gamePossible = false; // zablokowanie dalszej rozgrywki
-    }
+    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+    gameResult.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
+    gamePossible = false; // zablokowanie dalszej rozgrywki
+  }
 };
 
 // BUTTONS

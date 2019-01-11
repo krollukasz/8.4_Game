@@ -38,6 +38,7 @@ header h1 {
 
 .number-of-rounds, .result-info {
   padding-top: 10px;
+  font-size: 18px;
   text-align: center;
 }
 
@@ -47,6 +48,12 @@ header h1 {
 
 .start p, .info-action p {
   padding-top: 25px;
+}
+
+.game-result-info {
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
 }
 
 .new-game-button, .btns {

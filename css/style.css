@@ -18,7 +18,15 @@ body {
 
 header {
   padding: 30px;
-  background-color: #E5E7E9;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  background-color: #D7DBDD;
 }
 
 header h1 {
@@ -116,5 +124,9 @@ button:hover {
 .score .user-label, .score .computer-label {
   font-size: 40px;
   font-weight: 700;
+}
+
+.hidden {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

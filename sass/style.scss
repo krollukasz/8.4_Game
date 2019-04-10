@@ -32,7 +32,11 @@ body {
 
 header {
     padding: 30px;
-    background-color: $background-header;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-body;
 
     h1 {
         margin: 0;
@@ -134,4 +138,10 @@ button {
         font-size: 40px;
         font-weight: 700;
     }
+}
+
+// MODALS
+
+.hidden {
+    display: none;
 }

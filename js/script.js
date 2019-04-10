@@ -1,27 +1,37 @@
 "use strict";
 
-// Buttons and outputs variable
+// GLOBAL VARIABLES
 var newGame = document.getElementById("new-game-button");
-var paperButton = document.getElementById("paper");
-var rockButton = document.getElementById("rock");
-var scissorsButton = document.getElementById("scissors");
+// var paperButton = document.getElementById("paper");
+// var rockButton = document.getElementById("rock");
+// var scissorsButton = document.getElementById("scissors");
 
 var userPoints = document.getElementById("user-score");
 var computerPoints = document.getElementById("computer-score");
-var playerScore = 0;
-var computerScore = 0;
-var rounds;
 var gamePossible = false; // zmienna do zablokowania gry przed podaniem ilości rund
 
 var roundsInfo = document.getElementById("number-of-rounds");
 var result = document.getElementById("output-result");
 var gameResult = document.getElementById("game-result");
 
+//  GAME PARAMETERS OBJECT
+var params = {
+  playerScore: 0,
+  computerScore: 0,
+  rounds: 0,
+  gamePossible: false,
+};
+
+// SHOW CONTENT FUNCTION
+var showContent = function() {
+  document.querySelector("#content").classList.remove("hidden");
+}
+
 // GET ROUND FUNCTION
 
 function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
-  rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zapisanie do mniennej wartości typu liczbowego
-  return rounds;
+  params.rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zapisanie do mniennej wartości typu liczbowego
+  return params.rounds;
 };
 
 function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklarowanych rund
@@ -31,22 +41,23 @@ function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklaro
 // NEW BUTTON
 
 newGame.addEventListener("click", function() { // wywołanie funkcji
-  playerScore = 0; // wyzerowanie liczby punktów gracza
-  computerScore = 0;  // wyzerowanie liczby punktów komputera
+  params.playerScore = 0; // wyzerowanie liczby punktów gracza
+  params.computerScore = 0;  // wyzerowanie liczby punktów komputera
   userPoints.innerHTML = "0"; // wyzerowanie wyniku
   computerPoints.innerHTML = "0";  // wyzerowanie wyniku
-  rounds = 0; // wyzerowanie liczby rund
+  params.rounds = 0; // wyzerowanie liczby rund
   result.innerHTML = "";  // usunięcie komunikatu
   gameResult.innerHTML = "";  // usunięcie komunikatu
-  rounds = getRounds();
-  if (rounds == "" || rounds == null) {
+  params.rounds = getRounds();
+  if (params.rounds == "" || params.rounds == null) {
     roundsInfo.innerHTML = "Nie podano ilości rund";
-  } else if (isNaN(rounds)) {
+  } else if (isNaN(params.rounds)) {
     roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
   } else {
-    printRounds(rounds);
-    gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
+    printRounds(params.rounds);
+    params.gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
   }
+  showContent();
 });
 
 // COMPUTER CHOICE FUNCTION
@@ -62,20 +73,30 @@ function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
   }
 };
 
-// PLAYER CHOICE FUNCTION
 
+var gameButtons = document.querySelectorAll(".player-move");
+
+for ( var i = 0; i < gameButtons.length; i++) {
+  var choosedButton = gameButtons[i].getAttribute("data-move");
+  gameButtons[i].addEventListener("click", function() {
+    console.log(choosedButton);
+    // playerMove(this.choosedButton);
+  });
+};
+
+// PLAYER CHOICE FUNCTION
 function playerMove(playerChoice) {
   var computerChoice = getComputerChoice(); // Zapisanie do zmiennej "gotowego" wyboru komputera
   if (playerChoice === computerChoice) { // Porównaie wyników
     result.innerHTML = "<strong>Remis.</strong> Gracz wybrał" + playerChoice + " - Komputer wybrał " + computerChoice;
   } else if ((playerChoice === "papier" && computerChoice === "kamień") || (playerChoice === "kamień" && computerChoice === "nożyce") || (playerChoice === "nożyce" && computerChoice === "papier")) {
     result.innerHTML = "<strong>Wygrana!</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-    playerScore++;  // Zwiększenie liczby punktów gracza
-    userPoints.innerHTML = playerScore; // Wyświetlenie liczby punktów w tabeli wyników
+    params.playerScore++;  // Zwiększenie liczby punktów gracza
+    userPoints.innerHTML = params.playerScore; // Wyświetlenie liczby punktów w tabeli wyników
   } else {
     result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-    computerScore++;    // Zwiększenie liczby punktów komputera
-    computerPoints.innerHTML = computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
+    params.computerScore++;    // Zwiększenie liczby punktów komputera
+    computerPoints.innerHTML = params.computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
   }
   gameOver();
 };
@@ -83,11 +104,11 @@ function playerMove(playerChoice) {
 // GAME OVER FUNCTION
 
 function gameOver() { // Funkcja kończąca grę
-  if (playerScore === rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
+  if (params.playerScore === params.rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
     gameResult.innerHTML = "Gracz wygrał tę rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     gamePossible = false; // zablokowanie dalszej rozgrywki
-  } else if (computerScore === rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
+  } else if (params.computerScore === params.rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
     gameResult.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
     gamePossible = false; // zablokowanie dalszej rozgrywki
@@ -96,26 +117,26 @@ function gameOver() { // Funkcja kończąca grę
 
 // BUTTONS
 
-paperButton.addEventListener("click", function() {
-  if (gamePossible) {
-    playerMove("papier");
-  } else {
-    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-  }
-});
+// paperButton.addEventListener("click", function() {
+//   if (gamePossible) {
+//     playerMove("papier");
+//   } else {
+//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+//   }
+// });
 
-rockButton.addEventListener("click", function() {
-  if (gamePossible) {
-    playerMove("kamień");
-  } else {
-    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-  }
-});
+// rockButton.addEventListener("click", function() {
+//   if (gamePossible) {
+//     playerMove("kamień");
+//   } else {
+//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+//   }
+// });
 
-scissorsButton.addEventListener("click", function() {
-  if (gamePossible) {
-    playerMove("nożyce");
-  } else {
-    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-  }
-});
+// scissorsButton.addEventListener("click", function() {
+//   if (gamePossible) {
+//     playerMove("nożyce");
+//   } else {
+//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
+//   }
+// });

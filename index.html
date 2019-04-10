@@ -1,66 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Rock Paper Scissors Game</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+  </head>
 
-    <body>
-        <div class="container">
-            <div class="row">
-                <header>
-                    <h1>GRA: Papier Kamień Nożyce</h1>
-                </header>
-            </div>
-        </div>
-        
-        <div id="info-start" class="start container">
-            <p id="start-message">Kliknij przycisk "Nowa Gra" aby rozpocząć</p>
-        </div>
+  <body>
+    <div class="container">
+      <div class="row">
+        <header>
+          <h1>GRA: Papier Kamień Nożyce</h1>
+          <p id="start-message">Kliknij przycisk "Nowa Gra" aby rozpocząć</p>
+          <button type="button" id="new-game-button" class="btn btn-primary btn-lg new-game global">
+            NOWA GRA
+          </button>
+        </header>
+      </div>      
+    </div>
 
-        <div class="new-game-button container">
-            <button type="button" id="new-game-button" class="btn btn-primary btn-lg new-game global">
-                NOWA GRA
-            </button>
-        </div>
+    <div id="content" class="container hidden">
 
-        <div id="number-of-rounds" class="number-of-rounds container"></div>
 
-        <div id="info" class="info-action container">
+      <div id="modal-overlay" class="overlay">
+        <div class="modal">
+          <a href="#" class="close">X</a>
+          <div id="number-of-rounds" class="number-of-rounds container"></div>
+          <div id="info" class="info-action container">
             <p id="action-message">Wybierz swój ruch</p>
+          </div>
+
+          <div class="btns row">
+            <button class="button global player-move" id="paper" data-move="paper">Papier
+              <span><i class="far fa-hand-paper"></i></span>
+            </button>
+            <button class="button global player-move" id="rock" data-move="rock">Kamień
+              <span><i class="far fa-hand-rock"></i></span>
+            </button>
+            <button class="button global player-move" id="scissors" data-move="scissors">Nożyce
+              <span><i class="far fa-hand-scissors"></i></span>
+            </button>
+          </div>
+        
+          <div id="output-result" class="result-info container"></div>
+
+          <div class="score">
+            <div class="score-board row">
+              <span id="user-label" class="user-label">Gracz</span>
+              <div class="score-board-table">
+                <span id="user-score">0</span> : <span id="computer-score">0</span>
+              </div>
+              <span id="computer-label" class="computer-label">Komputer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <!-- <div id="number-of-rounds" class="number-of-rounds container"></div>
+        <div id="info" class="info-action container">
+          <p id="action-message">Wybierz swój ruch</p>
         </div>
 
-        <div class="container">
-            <div class="btns row">
-                <button class="button global player-move" id="paper" data-move="paper">Papier
-                    <span><i class="far fa-hand-paper"></i></span>
-                </button>
-                <button class="button global player-move" id="rock" data-move="rock">Kamień
-                    <span><i class="far fa-hand-rock"></i></span>
-                </button>
-                <button class="button global player-move" id="scissors" data-move="scissors">Nożyce
-                    <span><i class="far fa-hand-scissors"></i></span>
-                </button>
-            </div>
+        <div class="btns row">
+          <button class="button global player-move" id="paper" data-move="paper">Papier
+            <span><i class="far fa-hand-paper"></i></span>
+          </button>
+          <button class="button global player-move" id="rock" data-move="rock">Kamień
+            <span><i class="far fa-hand-rock"></i></span>
+          </button>
+          <button class="button global player-move" id="scissors" data-move="scissors">Nożyce
+            <span><i class="far fa-hand-scissors"></i></span>
+          </button>
         </div>
         
         <div id="output-result" class="result-info container"></div>
 
-        <div class="score container">
-            <div class="score-board row">
-                <span id="user-label" class="user-label">Gracz</span>
-                <div class="score-board-table">
-                    <span id="user-score">0</span> : <span id="computer-score">0</span>
-                </div>
-                <span id="computer-label" class="computer-label">Komputer</span>
+        <div class="score">
+          <div class="score-board row">
+            <span id="user-label" class="user-label">Gracz</span>
+            <div class="score-board-table">
+              <span id="user-score">0</span> : <span id="computer-score">0</span>
             </div>
-        </div>
+            <span id="computer-label" class="computer-label">Komputer</span>
+          </div>
+        </div> -->
+    </div>
 
-        <div id="game-result" class="game-result-info container"></div>
+    <div id="game-result" class="game-result-info container"></div>
 
     <script src="js/script.js"></script>   
-    </body>
+  </body>
 </html>

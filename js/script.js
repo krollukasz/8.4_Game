@@ -1,33 +1,57 @@
 "use strict";
 
-// GLOBAL VARIABLES
-var newGame = document.getElementById("new-game-button");
-// var paperButton = document.getElementById("paper");
-// var rockButton = document.getElementById("rock");
-// var scissorsButton = document.getElementById("scissors");
+// ::::: GLOBAL VARIABLES :::::
 
+var newGame = document.getElementById("new-game-button");
+var gameContent = document.getElementById("content");
+var info = document.getElementById("info");
+var roundsInfo = document.getElementById("number-of-rounds");
+var buttons = document.getElementById("buttons");
+var result = document.getElementById("output-result");
+var gameResult = document.getElementById("game-result");
+var scoreTable = document.getElementById("scoreTable");
 var userPoints = document.getElementById("user-score");
 var computerPoints = document.getElementById("computer-score");
 var gamePossible = false; // zmienna do zablokowania gry przed podaniem ilości rund
 
-var roundsInfo = document.getElementById("number-of-rounds");
-var result = document.getElementById("output-result");
-var gameResult = document.getElementById("game-result");
+//  ::::: GAME PARAMETERS :::::
 
-//  GAME PARAMETERS OBJECT
 var params = {
   playerScore: 0,
   computerScore: 0,
   rounds: 0,
-  gamePossible: false,
+  progress: [],
 };
 
-// SHOW CONTENT FUNCTION
-var showContent = function() {
-  document.querySelector("#content").classList.remove("hidden");
+// ::::: START GAME :::::
+
+function gameBlocked() {
+  gameContent.classList.remove("hidden");
+  info.classList.add("hidden");
+  roundsInfo.classList.remove("hidden");
+  buttons.classList.add("hidden");
+  result.classList.add("hidden");
+  gameResult.classList.add("hidden");
+  scoreTable.classList.add("hidden");
 }
 
-// GET ROUND FUNCTION
+function gameUnblocked() {
+  gameContent.classList.remove("hidden");
+  info.classList.remove("hidden");
+  buttons.classList.remove("hidden");
+  result.classList.remove("hidden");
+  gameResult.classList.remove("hidden");
+  scoreTable.classList.remove("hidden");
+  gamePossible = true;
+}
+
+
+// SHOW CONTENT FUNCTION
+// var showContent = function() {
+//   document.querySelector("#content").classList.remove("hidden");
+// }
+
+// ::::: GET ROUND :::::
 
 function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
   params.rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zapisanie do mniennej wartości typu liczbowego
@@ -38,7 +62,7 @@ function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklaro
   roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + rounds + "</strong>.";
 };
 
-// NEW BUTTON
+// ::::: NEW GAME BUTTON :::::
 
 newGame.addEventListener("click", function() { // wywołanie funkcji
   params.playerScore = 0; // wyzerowanie liczby punktów gracza
@@ -51,17 +75,17 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
   params.rounds = getRounds();
   if (params.rounds == "" || params.rounds == null) {
     roundsInfo.innerHTML = "Nie podano ilości rund";
+    gameBlocked();
   } else if (isNaN(params.rounds)) {
     roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
+    gameBlocked();
   } else {
     printRounds(params.rounds);
-    params.gamePossible = true; // odblokowanie możliwości gry po podaniu ilości rund
+    gameUnblocked();
   }
-  showContent();
 });
 
-// COMPUTER CHOICE FUNCTION
-
+// ::::: COMPUTER CHOICE
 function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
   var result = Math.floor(Math.random() * 3); // Funkcja losująca liczbę, mnożenie przez 3, zaokrąglenie w dół i zapis do zmiennej
   if (result === 0) { // zamiana liczby na tekst
@@ -73,19 +97,15 @@ function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
   }
 };
 
-
+// ::::: PLAYER CHOICE
 var gameButtons = document.querySelectorAll(".player-move");
+for (var i = 0; i < gameButtons.length; i++) {
+  gameButtons[i].addEventListener("click", playerMove);
+}
 
-for ( var i = 0; i < gameButtons.length; i++) {
-  var choosedButton = gameButtons[i].getAttribute("data-move");
-  gameButtons[i].addEventListener("click", function() {
-    console.log(choosedButton);
-    // playerMove(this.choosedButton);
-  });
-};
-
-// PLAYER CHOICE FUNCTION
+// ::::: RESULT COMPARE
 function playerMove(playerChoice) {
+  var playerChoice = this.getAttribute("data-move");
   var computerChoice = getComputerChoice(); // Zapisanie do zmiennej "gotowego" wyboru komputera
   if (playerChoice === computerChoice) { // Porównaie wyników
     result.innerHTML = "<strong>Remis.</strong> Gracz wybrał" + playerChoice + " - Komputer wybrał " + computerChoice;
@@ -101,17 +121,18 @@ function playerMove(playerChoice) {
   gameOver();
 };
 
-// GAME OVER FUNCTION
-
+// ::::: GAME OVER
 function gameOver() { // Funkcja kończąca grę
   if (params.playerScore === params.rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
     gameResult.innerHTML = "Gracz wygrał tę rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
-    gamePossible = false; // zablokowanie dalszej rozgrywki
+    gameBlocked();
+    params.gamePossible = false; // zablokowanie dalszej rozgrywki
   } else if (params.computerScore === params.rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
     gameResult.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
-    gamePossible = false; // zablokowanie dalszej rozgrywki
+    gameBlocked();
+    params.gamePossible = false; // zablokowanie dalszej rozgrywki
   }
 };
 

@@ -12,8 +12,9 @@
     <div class="container">
       <div class="row">
         <header>
-          <h1>GRA: Papier Kamień Nożyce</h1>
-          <p id="start-message">Kliknij przycisk "Nowa Gra" aby rozpocząć</p>
+          <h1>Papier Kamień Nożyce</h1>
+          <div id="new-player" class="new-player"></div>
+          <p id="start-message" class="start-message">Kliknij przycisk "Nowa Gra" aby rozpocząć</p>
           <button type="button" id="new-game-button" class="btn btn-primary btn-lg new-game global">
             NOWA GRA
           </button>
@@ -53,6 +54,40 @@
     </div>
 
     <div id="game-result" class="game-result-info container"></div>
+
+    <div class="footer">&copy; Copyright 2019 by Łukasz Król</div>
+
+    <div id="modal-overlay" class="overlay">
+      <div id="start-modal" class="modal start-modal">
+        <header class="start-modal-header">
+          <h1>Podaj imię i liczbę rund</h1>
+        </header>
+        <div class="modal-body start-modal-body">
+          <form class="start-modal-form">
+            <label>Imię:</label>
+            <input class="input" type="text" name="name">
+            <label>Liczba rund:</label>
+            <input class="input" type="number" name="rounds" min="1"> 
+          </form>
+        </div>
+        <div class="modal-footer start-modal-footer">
+          <button id="start-game" class="new-game modal-btn-start">Start</button>
+          <button id="cancel-game" class="new-game modal-btn-cancel">Anuluj</button>
+        </div>
+      </div>
+
+      <div id="end-modal" class="modal end-modal">
+        <div id="show-who-win"></div>
+        <header class="end-modal-header">Przebieg gry:</header>
+        <div class="content">
+          <div class="wrapper">
+            <table id="table-statistics">
+            </table>
+          </div>
+          <button class="new-game modal-btn-close" id="new-game">Zamknij</button>
+        </div>
+      </div>
+    </div>
 
     <script src="js/script.js"></script>   
   </body>

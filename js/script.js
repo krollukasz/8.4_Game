@@ -85,7 +85,8 @@ newGame.addEventListener("click", function() { // wywołanie funkcji
   }
 });
 
-// ::::: COMPUTER CHOICE
+// ::::: COMPUTER CHOICE :::::
+
 function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
   var result = Math.floor(Math.random() * 3); // Funkcja losująca liczbę, mnożenie przez 3, zaokrąglenie w dół i zapis do zmiennej
   if (result === 0) { // zamiana liczby na tekst
@@ -97,15 +98,17 @@ function getComputerChoice() { // Funkcja losowania "przycisku" przez komputer
   }
 };
 
-// ::::: PLAYER CHOICE
-var gameButtons = document.querySelectorAll(".player-move");
-for (var i = 0; i < gameButtons.length; i++) {
-  gameButtons[i].addEventListener("click", playerMove);
-}
+// ::::: PLAYER CHOICE :::::
 
-// ::::: RESULT COMPARE
+document.querySelectorAll('.player-move').forEach(function(element) {
+  element.addEventListener('click', function() {
+    playerMove(element.getAttribute('data-move'));
+  });
+});
+
+// ::::: RESULT COMPARE :::::
+
 function playerMove(playerChoice) {
-  var playerChoice = this.getAttribute("data-move");
   var computerChoice = getComputerChoice(); // Zapisanie do zmiennej "gotowego" wyboru komputera
   if (playerChoice === computerChoice) { // Porównaie wyników
     result.innerHTML = "<strong>Remis.</strong> Gracz wybrał" + playerChoice + " - Komputer wybrał " + computerChoice;
@@ -121,7 +124,8 @@ function playerMove(playerChoice) {
   gameOver();
 };
 
-// ::::: GAME OVER
+// ::::: GAME OVER :::::
+
 function gameOver() { // Funkcja kończąca grę
   if (params.playerScore === params.rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"

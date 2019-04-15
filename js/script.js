@@ -72,7 +72,7 @@ newGame.addEventListener("click", function() {
   params.playerName = document.querySelector('[name="name"]').value; // pobrabnie wartości imię z formularza
   if (params.playerName == "") { // sprawdzam czy podano imię
     roundsInfo.innerHTML = "To pole nie może być puste";
-    gameBlocked;
+    gameBlocked();
   } else {
     gameUnblocked();
   }
@@ -88,7 +88,7 @@ newGame.addEventListener("click", function() {
     gameUnblocked();
   }
   tableStats.innerHTML = ""; // inicjacja tabeli z wynikami (chyba potrzebne ??)
-  showScore(params.playerScore, params.computerScore); // do tabeli wyników
+  // showScore(params.playerScore, params.computerScore); // do tabeli wyników
   roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + params.rounds + "</strong>.";
   document.getElementById("new-player").innerHTML =
     "<p>Witaj " + params.playerName + ", baw się dobrze i... powodzenia :)</p>";
@@ -217,7 +217,7 @@ function gameOver() { // Funkcja kończąca grę
 
 var displayModal = function() {
   document.querySelector("#modal-overlay").classList.add("visible");
-  document.querySelector(".modal").classList.add("visible");
+  document.querySelector(".start-modal").classList.add("visible");
 };
 
 var hideModal = function() {

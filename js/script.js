@@ -68,12 +68,13 @@ function gameUnblocked() {
 // ::::: NEW GAME BUTTON :::::
 
 newGame.addEventListener("click", function() {
-  displayModal("#modal");
+  displayModal("#start-modal");
   params.playerName = document.querySelector('[name="name"]').value; // pobrabnie wartości imię z formularza
   if (params.playerName == "") { // sprawdzam czy podano imię
     roundsInfo.innerHTML = "To pole nie może być puste";
     gameBlocked();
   } else {
+    hideModal();
     gameUnblocked();
   }
   params.rounds = document.querySelector('[name="rounds"]').value; // pobranie ilości rund z formularza
@@ -85,9 +86,10 @@ newGame.addEventListener("click", function() {
     gameBlocked();
   } else {
     printRounds(params.rounds);
+    hideModal();
     gameUnblocked();
   }
-  tableStats.innerHTML = ""; // inicjacja tabeli z wynikami (chyba potrzebne ??)
+  // tableStats.innerHTML = ""; // inicjacja tabeli z wynikami (chyba potrzebne ??)
   // showScore(params.playerScore, params.computerScore); // do tabeli wyników
   roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + params.rounds + "</strong>.";
   document.getElementById("new-player").innerHTML =
@@ -215,17 +217,29 @@ function gameOver() { // Funkcja kończąca grę
 
 // ::::: MODALS :::::
 
-var displayModal = function() {
+var displayModal = function(modalToShow) {
+  // console.log(modalToShow);
   document.querySelector("#modal-overlay").classList.add("visible");
-  document.querySelector(".start-modal").classList.add("visible");
+  document.querySelector(modalToShow).classList.add("visible");
+  // document.querySelector("#modal-overlay").classList.add("visible");
+  // document.querySelectorAll(".modal").classList.add("visible");
 };
 
 var hideModal = function() {
+  // preventDefault();
   document.querySelectorAll(".modal").forEach(function(modal) {
     modal.classList.remove("visible");
   });
   document.querySelector("#modal-overlay").classList.remove("visible");
 };
+document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+
+var modals = document.querySelectorAll(".modal");
+for ( var i = 0; i < modals.length; i++) {
+  modals[i].addEventListener("click", function(modal) {
+    modal.stopPropagation();
+  });
+}
 
 // BUTTONS
 

@@ -6,10 +6,12 @@ var newGame = document.getElementById("new-game-button");
 var gameContent = document.getElementById("content");
 var info = document.getElementById("info");
 var roundsInfo = document.getElementById("number-of-rounds");
+var roundsNumberFromInput = document.querySelector("rounds-number");
 var buttons = document.getElementById("buttons");
 var result = document.getElementById("output-result");
 var gameResult = document.getElementById("game-result");
 var scoreTable = document.getElementById("scoreTable");
+var userNameFromInput = document.querySelector("#player-name");
 var userPoints = document.getElementById("user-score");
 var computerPoints = document.getElementById("computer-score");
 var tableStats = document.getElementById("table-statistics");
@@ -93,7 +95,7 @@ newGame.addEventListener("click", function() {
   // showScore(params.playerScore, params.computerScore); // do tabeli wyników
   roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + params.rounds + "</strong>.";
   document.getElementById("new-player").innerHTML =
-    "<p>Witaj " + params.playerName + ", baw się dobrze i... powodzenia :)</p>";
+    "<p>Witaj " + userNameFromInput.value + ", baw się dobrze i... powodzenia :)</p>";
 });
 
 // newGame.addEventListener("click", function() { // wywołanie funkcji

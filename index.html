@@ -66,14 +66,14 @@
         <div class="modal-body start-modal-body">
           <form class="start-modal-form">
             <label>Imię:</label>
-            <input class="input" type="text" name="name">
+            <input id="player-name" class="input" type="text" name="name" required="required">
             <label>Liczba rund:</label>
-            <input class="input" type="number" name="rounds" min="1"> 
+            <input id="rounds-number" class="input" type="number" name="rounds" required="required" min="1"> 
           </form>
         </div>
         <div class="modal-footer start-modal-footer">
-          <button id="start-game" class="new-game modal-btn-start">Start</button>
-          <button id="cancel-game" class="new-game modal-btn-cancel">Anuluj</button>
+          <button id="start-game" class="new-game modal-btn-start" type="button">Start</button>
+          <button id="cancel-game" class="new-game modal-btn-cancel" type="button">Anuluj</button>
         </div>
       </div>
 

@@ -129,7 +129,7 @@ button:hover {
 .overlay {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -151,6 +151,25 @@ button:hover {
   display: none;
   overflow: auto;
   outline: none;
+}
+
+.start-modal .end-modal-header, .end-modal .end-modal-header {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 26px;
+  background-color: #fff;
+}
+
+.start-modal .content .wrapper, .end-modal .content .wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  font-size: 18px;
+}
+
+.start-modal .content .wrapper .table-statistics, .end-modal .content .wrapper .table-statistics {
+  width: 66%;
 }
 
 .hidden {

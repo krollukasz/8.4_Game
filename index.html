@@ -29,13 +29,13 @@
       </div>
 
       <div id="buttons" class="btns row">
-        <button class="button global player-move" id="paper" data-move="papier">Papier
+        <button class="game-button global player-move" id="paper" data-move="papier">Papier
           <span><i class="far fa-hand-paper"></i></span>
         </button>
-        <button class="button global player-move" id="rock" data-move="kamień">Kamień
+        <button class="game-button global player-move" id="rock" data-move="kamień">Kamień
           <span><i class="far fa-hand-rock"></i></span>
         </button>
-        <button class="button global player-move" id="scissors" data-move="nożyce">Nożyce
+        <button class="game-button global player-move" id="scissors" data-move="nożyce">Nożyce
           <span><i class="far fa-hand-scissors"></i></span>
         </button>
       </div>
@@ -59,7 +59,6 @@
 
     <div id="modal-overlay" class="overlay">
       <div id="start-modal" class="modal start-modal">
-        <!-- <button class="close">X</button> -->
         <header class="start-modal-header">
           <h1>Podaj imię i liczbę rund</h1>
         </header>
@@ -78,15 +77,13 @@
       </div>
 
       <div id="end-modal" class="modal end-modal">
-        <!-- <button class="close">X</button> -->
-        <div id="show-who-win"></div>
-        <header class="end-modal-header"></header>
+        <header id="modal-header" class="end-modal-header"></header>
         <div class="content">
           <div class="wrapper">
             <table id="table-statistics" class="table-statistics">
             </table>
           </div>
-          <button class="new-game modal-btn-close" id="new-game">Zamknij</button>
+          <button class="modal-btn-close" id="end-game">Zamknij</button>
         </div>
       </div>
     </div>

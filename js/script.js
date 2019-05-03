@@ -14,6 +14,7 @@ var scoreTable = document.getElementById("scoreTable");
 var userNameFromInput = document.querySelector("#player-name");
 var userPoints = document.getElementById("user-score");
 var computerPoints = document.getElementById("computer-score");
+var tableHeader = document.getElementById("modal-header");
 var tableStats = document.getElementById("table-statistics");
 //var gamePossible = false; // zmienna do zablokowania gry przed podaniem ilości rund
 
@@ -23,8 +24,10 @@ var params = {
   playerScore: 0,
   computerScore: 0,
   rounds: 0,
+  currentRound: 1,
   playerName: "player",
   roundWinner: "",
+  roundResult: "",
   progress: [],
 };
 
@@ -43,6 +46,7 @@ function gameBlocked() {
 function gameUnblocked() {
   gameContent.classList.remove("hidden");
   info.classList.remove("hidden");
+  roundsInfo.classList.remove("hidden");
   buttons.classList.remove("hidden");
   result.classList.remove("hidden");
   gameResult.classList.remove("hidden");
@@ -50,36 +54,37 @@ function gameUnblocked() {
   // gamePossible = true;
 }
 
+// ::::: GAME PARAMS RESET :::::
+// Reset parametrów gry
 
-// SHOW CONTENT FUNCTION
-// var showContent = function() {
-//   document.querySelector("#content").classList.remove("hidden");
-// }
+function gameReset() {
+  params.playerScore = 0; // wyzerowanie liczby punktów gracza
+  params.computerScore = 0;  // wyzerowanie liczby punktów komputera
+  userPoints.innerHTML = "0"; // wyzerowanie wyniku
+  computerPoints.innerHTML = "0";  // wyzerowanie wyniku
+  params.rounds = 0; // wyzerowanie liczby rund
+  params.currentRound = 1,
+  result.innerHTML = "";  // usunięcie komunikatu
+  gameResult.innerHTML = "";  // usunięcie komunikatu
+  params.progress = []
+}
 
 // ::::: GET ROUND :::::
 
-// function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
-//   params.rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zapisanie do mniennej wartości typu liczbowego
-//   return params.rounds;
-// };
+function getRounds() { // pobranie i zwrócenie ilości rund do rozegrania
+  params.rounds = Number(window.prompt("Podaj liczbę rund, jaką chcesz rozegrać:")); // zapisanie do mniennej wartości typu liczbowego
+  return params.rounds;
+};
 
-// function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklarowanych rund
-//   roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + rounds + "</strong>.";
-// };
+function printRounds(rounds) { // wyświetlenie komunikatu z ilością zadeklarowanych rund
+  roundsInfo.innerHTML = "Zadeklarowana ilość rund do rozegrania to: <strong>" + rounds + "</strong>.";
+};
 
 // ::::: NEW GAME BUTTON :::::
 
-newGame.addEventListener("click", function() {
-  displayModal("#start-modal");
-  params.playerName = document.querySelector('[name="name"]').value; // pobrabnie wartości imię z formularza
-  if (params.playerName == "") { // sprawdzam czy podano imię
-    roundsInfo.innerHTML = "To pole nie może być puste";
-    gameBlocked();
-  } else {
-    hideModal();
-    gameUnblocked();
-  }
-  params.rounds = document.querySelector('[name="rounds"]').value; // pobranie ilości rund z formularza
+newGame.addEventListener("click", function() { // wywołanie funkcji po kliknięciu przycisku Nowa gra
+  gameReset();
+  params.rounds = getRounds();
   if (params.rounds == "" || params.rounds == null) {
     roundsInfo.innerHTML = "Nie podano ilości rund";
     gameBlocked();
@@ -88,36 +93,9 @@ newGame.addEventListener("click", function() {
     gameBlocked();
   } else {
     printRounds(params.rounds);
-    hideModal();
     gameUnblocked();
   }
-  // tableStats.innerHTML = ""; // inicjacja tabeli z wynikami (chyba potrzebne ??)
-  // showScore(params.playerScore, params.computerScore); // do tabeli wyników
-  roundsInfo.innerHTML = "Zadeklarowana ilość rund do wygrania to <strong>" + params.rounds + "</strong>.";
-  document.getElementById("new-player").innerHTML =
-    "<p>Witaj " + userNameFromInput.value + ", baw się dobrze i... powodzenia :)</p>";
 });
-
-// newGame.addEventListener("click", function() { // wywołanie funkcji
-//   params.playerScore = 0; // wyzerowanie liczby punktów gracza
-//   params.computerScore = 0;  // wyzerowanie liczby punktów komputera
-//   userPoints.innerHTML = "0"; // wyzerowanie wyniku
-//   computerPoints.innerHTML = "0";  // wyzerowanie wyniku
-//   params.rounds = 0; // wyzerowanie liczby rund
-//   result.innerHTML = "";  // usunięcie komunikatu
-//   gameResult.innerHTML = "";  // usunięcie komunikatu
-//   params.rounds = getRounds();
-//   if (params.rounds == "" || params.rounds == null) {
-//     roundsInfo.innerHTML = "Nie podano ilości rund";
-//     gameBlocked();
-//   } else if (isNaN(params.rounds)) {
-//     roundsInfo.innerHTML = "Podana wartość nie jest liczbą";
-//     gameBlocked();
-//   } else {
-//     printRounds(params.rounds);
-//     gameUnblocked();
-//   }
-// });
 
 // ::::: COMPUTER CHOICE :::::
 
@@ -146,45 +124,44 @@ function playerMove(playerChoice) {
   var computerChoice = getComputerChoice(); // Zapisanie do zmiennej "gotowego" wyboru komputera
   if (playerChoice === computerChoice) { // Porównaie wyników
     result.innerHTML = "<strong>Remis.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
+    params.roundResult = "Remis";
   } else if ((playerChoice === "papier" && computerChoice === "kamień") || (playerChoice === "kamień" && computerChoice === "nożyce") || (playerChoice === "nożyce" && computerChoice === "papier")) {
     result.innerHTML = "<strong>Wygrana!</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-    roundResult = "Wygrana";
+    params.roundResult = "Wygrana";
     params.playerScore++;  // Zwiększenie liczby punktów gracza
-    params.roundWinner = "player" // A DA SIĘ TU WSTAWIĆ IMIĘ GRACZA PODANE W INPUCIE ??
     userPoints.innerHTML = params.playerScore; // Wyświetlenie liczby punktów w tabeli wyników
   } else {
     result.innerHTML = "<strong>Przegrana.</strong> Gracz wybrał " + playerChoice + " - Komputer wybrał " + computerChoice;
-    roundResult = "Przegrana"
+    params.roundResult = "Przegrana"
     params.computerScore++;    // Zwiększenie liczby punktów komputera
-    params.roundWinner = "computer"
     computerPoints.innerHTML = params.computerScore;   // Wyświetlenie liczby punktów w tabeli wyników
   }
   
   // przesłanie wyników do tablicy
   params.progress.push({
-    roundNumber: params.rounds,
-    eachRoundPlayerMove: params.playerChoice,
-    eachRoundComputerMove: params.computerChoice,
-    roundResult: roundResult,
+    roundNumber: params.currentRound,
+    eachRoundPlayerMove: playerChoice,
+    eachRoundComputerMove: computerChoice,
+    roundResult: params.roundResult,
     gameScore: params.playerScore + " : " + params.computerScore
-  })
+  });
   // sprawdzenie czy ostatnia runda
-  if ((params.playerScore == params.rounds) || (params.computerScore == params.rounds)) {
-    // gameWinner(); // DOPISAĆ FUNKCJĘ NA KONIEC GRY !!!!!!!!!!!!!!
-    showModal("#end-modal"); // uruchomienie modala na koniec gry
+    if (params.currentRound == params.rounds) {
+    gameBlocked();
+    roundsInfo.classList.add("hidden");
+    displayModal("#end-modal");
     endGameTable();
   } else {
-    params.rounds++;
+    params.currentRound++;
   }
-  gameOver();
 };
 
 // ::::: RESULT TABLE :::::
-// Create table in modal
+// Utworzenie tabeli z wynikami wyświetlanej w modalu
 
 var endGameTable = function() {
   tableStats.innerHTML = 
-    "<thead><tr><th>Runda</th><th>Wybór gracza</th><th>Wybór komputera</th><th>Wynik rundy</th><th>Wynik gry</th></tr></thead>";
+    "<thead className='header-info'><tr class='modal-row'><th>Runda</th><th>Wybór gracza</th><th>Wybór komputera</th><th>Wynik rundy</th><th>Wynik gry</th></tr></thead>";
   for ( var i = 0; i < params.progress.length; i++ ) {
     tableStats.innerHTML +=
     "<tr><td>" +
@@ -202,69 +179,52 @@ var endGameTable = function() {
 };
 
 // ::::: GAME OVER :::::
+// Funkcja kończąca grę
 
-function gameOver() { // Funkcja kończąca grę
-  if (params.playerScore === params.rounds) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
-    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-    gameResult.innerHTML = "Gracz wygrał tę rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
+function gameOver() { 
+  if (params.playerScore > params.computerScore) { // Porównanie liczby punktów gracza z ilością zadeklarowanych rund
+    tableHeader.innerHTML = "Gracz wygrał tę rozgrywkę"; // Wyświetlenie komunikatu o wygranej gracza
     gameBlocked();
-    params.gamePossible = false; // zablokowanie dalszej rozgrywki
-  } else if (params.computerScore === params.rounds) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
-    roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-    gameResult.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
+    roundsInfo.classList.add("hidden");
+  } else if (params.computerScore > params.playerScore) {  // Porównanie liczby punktów komputera z ilością zadeklarowanych rund
+    tableHeader.innerHTML = "Komputer wygrał tę rozgrywkę";  // Wyświetlenie komunikatu o wygranej komputera
     gameBlocked();
-    params.gamePossible = false; // zablokowanie dalszej rozgrywki
+    roundsInfo.classList.add("hidden");
+  } else {
+    tableHeader.innerHTML = "Rozgrywka zakończyła się remisem";
+    gameBlocked();
+    roundsInfo.classList.add("hidden");
   }
 };
 
 // ::::: MODALS :::::
+// Wyświetlenie modalu
 
 var displayModal = function(modalToShow) {
-  // console.log(modalToShow);
+  gameOver();
   document.querySelector("#modal-overlay").classList.add("visible");
   document.querySelector(modalToShow).classList.add("visible");
-  // document.querySelector("#modal-overlay").classList.add("visible");
-  // document.querySelectorAll(".modal").classList.add("visible");
 };
 
-var hideModal = function() {
-  // preventDefault();
+// Ukrycie overlay'a i wszystkich modali
+var hideModal = function(event) {
+  event.preventDefault();
+  document.querySelector("#modal-overlay").classList.remove("visible");
   document.querySelectorAll(".modal").forEach(function(modal) {
     modal.classList.remove("visible");
   });
-  document.querySelector("#modal-overlay").classList.remove("visible");
 };
-document.querySelector('#modal-overlay').addEventListener('click', hideModal);
 
+var closeButton = document.querySelectorAll(".modal-btn-close");
+for (var i = 0; i < closeButton.length; i++) {
+  closeButton[i].addEventListener("click", hideModal);
+}
+document.querySelector("#modal-overlay").addEventListener("click", hideModal);
+
+// Zablokowanie propagacji
 var modals = document.querySelectorAll(".modal");
-for ( var i = 0; i < modals.length; i++) {
-  modals[i].addEventListener("click", function(modal) {
-    modal.stopPropagation();
+for (var i = 0; i < modals.length; i++) {
+  modals[i].addEventListener("click", function(e) {
+    e.stopPropagation();
   });
 }
-
-// BUTTONS
-
-// paperButton.addEventListener("click", function() {
-//   if (gamePossible) {
-//     playerMove("papier");
-//   } else {
-//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-//   }
-// });
-
-// rockButton.addEventListener("click", function() {
-//   if (gamePossible) {
-//     playerMove("kamień");
-//   } else {
-//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-//   }
-// });
-
-// scissorsButton.addEventListener("click", function() {
-//   if (gamePossible) {
-//     playerMove("nożyce");
-//   } else {
-//     roundsInfo.innerHTML = "<strong>Naciśnij przycisk nowa gra</strong>"
-//   }
-// });

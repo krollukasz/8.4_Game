@@ -87,14 +87,16 @@ header h1 {
 
 .new-game:hover {
   background-color: #E67E22;
+  color: #fff;
+  cursor: pointer;
 }
 
-button {
+.game-button {
   background-color: #52BE80;
   border: 3px solid #196F3D;
 }
 
-button:hover {
+.game-button:hover {
   background-color: #229954;
   color: #fff;
   cursor: pointer;
@@ -124,6 +126,20 @@ button:hover {
 .score .user-label, .score .computer-label {
   font-size: 40px;
   font-weight: 700;
+}
+
+.footer {
+  width: 100%;
+  height: 50px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  font-size: 15px;
+  position: fixed;
+  bottom: 0;
 }
 
 .overlay {
@@ -156,11 +172,27 @@ button:hover {
 .start-modal .end-modal-header, .end-modal .end-modal-header {
   margin-bottom: 20px;
   padding: 10px;
-  font-size: 26px;
+  font-size: 36px;
   background-color: #fff;
 }
 
-.start-modal .content .wrapper, .end-modal .content .wrapper {
+.start-modal .content .modal-btn-close, .end-modal .content .modal-btn-close {
+  width: 100px;
+  height: 30px;
+  background-color: #fff;
+  color: #000000;
+  font-size: 14px;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  outline: none;
+}
+
+.start-modal .content .modal-btn-close:hover, .end-modal .content .modal-btn-close:hover {
+  background-color: #D7DBDD;
+  font-weight: 700;
+}
+
+.start-modal .wrapper, .end-modal .wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -168,7 +200,8 @@ button:hover {
   font-size: 18px;
 }
 
-.start-modal .content .wrapper .table-statistics, .end-modal .content .wrapper .table-statistics {
+.start-modal .wrapper .table-statistics, .end-modal .wrapper .table-statistics {
+  margin-bottom: 40px;
   width: 66%;
 }
 
@@ -178,5 +211,35 @@ button:hover {
 
 .visible {
   display: block;
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 80%;
+  }
+  .container .start-message {
+    text-align: center;
+  }
+  .global {
+    margin: 20px 8px;
+  }
+  .btns {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .score .score-board {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+  .score .score-board-table {
+    margin: 15px 0;
+  }
+  .footer {
+    font-size: 0.6rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

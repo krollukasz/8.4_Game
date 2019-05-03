@@ -31,167 +31,234 @@ body {
 // HEARDER
 
 header {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: $background-body;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-body;
 
-    h1 {
-        margin: 0;
-        color: $font-color-header;
-        text-align: center;
-        font-weight: 700;
-    }
+  h1 {
+    margin: 0;
+    color: $font-color-header;
+    text-align: center;
+    font-weight: 700;
+  }
 }
 
 // OUTPUTS
 
 .start {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 .info-action {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .number-of-rounds, .result-info {
-    padding-top: 10px;
-    font-size: 18px;
-    text-align: center;
+  padding-top: 10px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .start, .info-action {
-    text-align: center;
+  text-align: center;
 
-    p {
-        padding-top: 25px;
-    }
+  p {
+    padding-top: 25px;
+  }
 }
 
 .game-result-info {
-    margin-top: 30px;
-    font-size: 30px;
-    text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
 }
 
 // BUTTONS
 
 .new-game-button, .btns {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .global {
-    margin: 20px;
-    padding: 15px 50px;
-    font-size: 20px;
-    border-radius: 6px;
-    box-shadow: 3px 3px 3px grey;
-    font-weight: 700;
+  margin: 20px;
+  padding: 15px 50px;
+  font-size: 20px;
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px grey;
+  font-weight: 700;
 }
 
 .new-game {
-    background-color: $new-game-button-color;
-    border: 3px solid $border-color;
+  background-color: $new-game-button-color;
+  border: 3px solid $border-color;
 
-    &:hover {
-        background-color: $new-game-button-hover-color;
-    }
+  &:hover {
+    background-color: $new-game-button-hover-color;
+    color: $font-color-white;
+    cursor: pointer;
+  }
 }
 
-button {
-    background-color: $button-color;
-    border: 3px solid #196F3D;
+.game-button {
+  background-color: $button-color;
+  border: 3px solid #196F3D;
 
-    &:hover {
-        background-color: $button-hover-color;
-        color: $font-color-white;
-        cursor: pointer;
-    }
+  &:hover {
+    background-color: $button-hover-color;
+    color: $font-color-white;
+    cursor: pointer;
+  }
 }
 
 // SCORE BOARD
 
 .score {
     
-    .score-board {
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
+  .score-board {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-    .score-board-table {
-        padding: 10px 20px;
-        width: 200px;
-        color: $font-color-body;
-        font-size: 50px;
-        font-weight: 700;
-        text-align: center;
-        border: 3px solid $border-color;
-        border-radius: 4px;
-    }
+  .score-board-table {
+    padding: 10px 20px;
+    width: 200px;
+    color: $font-color-body;
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    border: 3px solid $border-color;
+    border-radius: 4px;
+  }
 
-    .user-label, .computer-label {
-        font-size: 40px;
-        font-weight: 700;
-    }
+  .user-label, .computer-label {
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
+
+// FOOTER
+
+.footer {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  position: fixed;
+  // position: absolute;
+  bottom: 0;
 }
 
 // MODALS
 
 .overlay {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-  }
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
   
-  .start-modal, .end-modal {
-    padding: 15px;
-    width: 50%;
-    min-width: 220px;
-    max-height: 50%;  
-    background: #ffffff;
-    font-family: "Asap", sans-serif;
-    text-align: center;
-    border-radius: 20px;
-    position: absolute;
-    top: 120px;
-    left: 25%;
-    display: none;
-    overflow: auto;
-    outline: none;
+.start-modal, .end-modal {
+  padding: 15px;
+  width: 50%;
+  min-width: 220px;
+  max-height: 50%;  
+  background: #ffffff;
+  font-family: "Asap", sans-serif;
+  text-align: center;
+  border-radius: 20px;
+  position: absolute;
+  top: 120px;
+  left: 25%;
+  display: none;
+  overflow: auto;
+  outline: none;
 
-    .end-modal-header {
-        margin-bottom: 20px;
-        padding: 10px;
-        font-size: 26px;
-        background-color: $font-color-white;
-    }
+  .end-modal-header {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 36px;
+    background-color: $font-color-white;
+  }
 
-    .content .wrapper {
-        display: flex;
-        justify-content: center;
-        font-size: 18px;
+  .content {
+    .modal-btn-close {
+      width: 100px;
+      height: 30px;
+      background-color: $font-color-white;
+      color: #000000;
+      font-size: 14px;
+      border: 2px solid #000000;
+      border-radius: 4px;
+      outline: none;
 
-        
-
-        .table-statistics {
-            width: 66%;
-        }
+      &:hover {
+        background-color: $background-body;
+        font-weight: 700;
+      }
     }
   }
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+
+    .table-statistics {
+      margin-bottom: 40px;
+      width: 66%;
+    }
+  }
+}
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .visible {
-    display: block;
+  display: block;
+}
+
+@media(max-width: 767px) {
+  .container {
+    max-width: 80%;
+
+    .start-message {
+      text-align: center;
+    }
+  }
+
+  .global {
+    margin: 20px 8px;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .score {
+    .score-board {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .score-board-table {
+      margin: 15px 0;
+    }
+  }
+
+  .footer {
+    font-size: 0.6rem;
+  }
 }
